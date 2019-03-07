@@ -12,7 +12,7 @@
         "type": "shell",
         "inline": [
             "sudo yum install httpd -y",
-            "sudo yum install php -y".
+            "sudo yum install php -y",
             "sudo touch /tmp/testfile",
             "sudo useradd bob",
             "sudo systemctl start httpd"
