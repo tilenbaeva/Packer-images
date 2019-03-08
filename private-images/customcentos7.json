@@ -1,0 +1,47 @@
+{
+    "builders": [{
+        "type": "amazon-ebs",
+        "region": "eu-west-1",
+        "source_ami": "ami-0ff760d16d9497662",
+        "instance_type": "t2.micro",
+        "ssh_username": "centos",
+        "ami_name": "aiza-{{timestamp}}"
+    }],
+    "provisioners": [
+        {
+        "type": "shell",
+        "inline": [
+            "sudo yum install httpd -y",
+            "sudo systemctl start httpd.service",
+            "sudo systemctl enable httpd.service",
+
+            "sudo useradd aiza",
+         
+            "sudo yum install mariadb-server mariadb -y",
+            "sudo systemctl start mariadb",
+            "sudo systemctl enable mariadb.service",
+
+            "sudo yum install php php-mysql -y",
+            "sudo systemctl restart httpd.service",
+            "sudo yum install php-fpm -y",
+            
+            "sudo yum install php-gd -y",
+            "sudo service httpd restart",
+            "cd ~",
+            "sudo yum install wget -y",
+            "sudo wget http://wordpress.org/latest.tar.gz",
+            "sudo tar xzvf latest.tar.gz",
+            "sudo rsync -avP ~/wordpress/ /var/www/html/",
+            "sudo chown -R apache:apache /var/www/html/*",
+            "cd /var/www/html",
+            "sudo cp wp-config-sample.php wp-config.php"
+             ]
+        },
+
+        {
+        "type": "file",
+        "source": "/etc/passwd",
+        "destination": "/tmp/user_list"
+        }
+    ]
+}
