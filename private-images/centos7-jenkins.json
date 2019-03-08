@@ -36,7 +36,6 @@
             "cd /var/www/html",
             "sudo cp wp-config-sample.php wp-config.php",
 
-    #Installing Jenkins
             "sudo yum -y update",
             "sudo yum install java-1.8.0-openjdk-devel -y",
             "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
