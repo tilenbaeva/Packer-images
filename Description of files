@@ -1,0 +1,5 @@
+
+
+1. Creates AMI (AWS EC2 )template with Jenkins and WordPress website installed.
+2. Creates AMI with WP installed.
+3. Creates AMI with Jenkins on.
